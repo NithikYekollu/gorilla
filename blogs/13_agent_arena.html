@@ -426,7 +426,7 @@
             <p>Add Picture Here</p>
 
           <h2 id="evaluation-ranking">
-            Evaluation and Ranking System: The Leaderboard
+            Evaluation and Ranking System
           </h2>
           <div class="body">
             <p>
@@ -574,184 +574,86 @@
           </div>
 
 
-          <h2 id="example-tasks">Example Tasks and Applications</h2>
+          <h2 id="example-tasks">The Prompt Hub</h2>
           <div class="body">
             <p>
-              Agent Arena supports a wide range of tasks, which are defined by
-              the user and can vary in complexity. The platform provides several
-              example tasks, including but not limited to:
-            </p>
-            <ul>
-              <li>
-                <strong>Data retrieval tasks:</strong> For example, querying
-                stock prices or other real-time financial data using agents
-                equipped with financial APIs.
-              </li>
-              <li>
-                <strong>Text summarization:</strong> Summarizing complex
-                articles or documents based on user inputs.
-              </li>
-              <li>
-                <strong>Data analysis:</strong> Using agents to analyze CSV
-                files or datasets, such as calculating financial metrics from
-                company data.
-              </li>
-            </ul>
-            <p>
-              Users are also encouraged to define custom tasks that meet
-              specific research or operational requirements. In these cases, the
-              router will automatically assign agents that have demonstrated
-              proficiency in similar tasks, ensuring that the selected agents
-              are well-suited to the task at hand.
-            </p>
-            <p>
-              Some specific examples of tasks that can be performed in Agent
-              Arena include:
-            </p>
-            <ul>
-              <li>
-                Analyzing market trends and providing investment recommendations
-                based on real-time financial data.
-              </li>
-              <li>
-                Generating comprehensive reports on company performance using
-                data from multiple sources.
-              </li>
-              <li>
-                Creating personalized learning plans based on a student's
-                academic history and goals.
-              </li>
-              <li>
-                Developing marketing strategies by analyzing consumer behavior
-                data and market trends.
-              </li>
-              <li>
-                Assisting in scientific research by summarizing relevant papers
-                and suggesting experimental designs.
-              </li>
-            </ul>
+                The Agent Arena also comes with a prompt hub that has over 1000+ tasks that have been tested and verified to work on the platform. Users will be able to search for similar use cases as theirs and observe how different prompts are executed and perform. Furthermore, the platform also enables users to post their prompts to the community. @Ashwin keep writing this section.
+                </p>
+            
           </div>
 
-          <h2 id="agents-definition">What Are Agents?</h2>
+          <h2 id="agents-definition">The Abilities of Agents</h2>
           <div class="body">
             <p>
-              In Agent Arena, agents are defined as entities that can perform
-              complex tasks by leveraging various components, such as LLM
-              models, tools, and frameworks. The agents we consider are sourced
-              from established frameworks like LangChain, LlamaIndex, CrewAI,
-              Composio, and assistants provided by OpenAI and Anthropic. Each of
-              these agents displays key characteristics such as chain-of-thought
-              reasoning, tool use, and function calling, which enable them to
-              execute complex tasks efficiently.
+                Through the process of building out the agent arena and literature analysis, we were able to observe the several different "skills" that comprise of an agent's performance. More specifically, different use-cases required different levels of these "skills" in order to get the final answer correct. Here are some of the key skills that we observed:
+                <ul>
+                    <li>
+                        <strong>Analysis:</strong> This constitutes of both qualitative and quantitative analysis. The ability to look at a data, however unstructured, and make sense of it.
+                    </li>
+                    <li>
+                        <strong>Long-Context Understanding:</strong> A lot of agentic tasks require parsing and looking through large documents / datasets to find the right information to answer a question or proceed to a next step. Therefore, the model's ability to perform accurately in long context scenarios is crucial.
+                    </li>
+                    <li>
+                        <strong>Planning:</strong> The ability to plan out a series of steps to solve a problem. This is crucial in tasks that require a sequence of actions to be taken.
+                    </li>
+                    <li>
+                        <strong>Adaptation:</strong> The ability to adapt to changing circumstances and adjust the approach accordingly. This is essential in tasks that involve dynamic environments. Within this, the ability to backtrack and properly correct and learn from mistakes is very important.
+                    </li>
+                    <li>
+                        <strong>Computation</strong> The ability to perform complex computations and calculations. This is important in tasks that require data manipulation and analysis.
+                    </li>
+                    <li>
+                        <strong>Tool Use:</strong> The ability to interact with and choose the right external tools and APIs to gather information or perform specific tasks. 
+                    </li>
+                </ul>
             </p>
             <p>
-              For example, LangChain and LlamaIndex agents come equipped with
-              specific toolkits that enhance their problem-solving capabilities.
-              OpenAI's assistants, such as code interpreters and file processing
-              models, also qualify as agents due to their demonstrated ability
-              to interpret code, process files, and call external functions.
-              Anthropic's agents are integrated with external tools, and similar
-              examples from other frameworks further enhance their utility for
-              specific tasks.
-            </p>
+                As these "skills" have become more important in the development of agents, we have seen a rise in the development of models that are specifically optimized for agent-like tasks. For example:
+              </p>
+              <ul>
+                <li>
+                  <strong>Mixtral:</strong> Utilizing a Mixture-of-Experts
+                  architecture, Mixtral activates only relevant subnetworks,
+                  allowing for more context-aware responses in tasks that require
+                  specialization.
+                </li>
+                <li>
+                  <strong>Llama 3.1:</strong> Fine-tuned for tool use, Llama 3.1
+                  interacts with external tools, such as market data fetchers and
+                  graph plotters, making it highly suitable for agent tasks
+                  requiring data manipulation.
+                </li>
+                <li>
+                  <strong>OpenAI o1 models:</strong> These models excel at
+                  chain-of-thought reasoning, task planning, and multi-step
+                  problem solving, essential for agents handling complex tasks.
+                  Their ability to generate and execute code further enhances
+                  their versatility in agent-like tasks.
+                </li>
+              </ul>
+              <p>
+                While these models are a step forward, additional research and
+                fine-tuning are required to build models that fully emulate the
+                reasoning, planning, and adaptive behaviors critical for
+                sophisticated agents.
+              </p>
+          </div>
+
+          <h2 id="agents-definition">How to Build your Agentic Stack</h2>
+          <div class="body">
             <p>
-              The key components that define an agent in Agent Arena include:
+                @ashwin / @nithik
             </p>
-            <ul>
-              <li>
-                <strong>LLM Model:</strong> The underlying language model that
-                powers the agent's reasoning and text generation capabilities.
-              </li>
-              <li>
-                <strong>Tools:</strong> External APIs, databases, or functions
-                that the agent can use to gather information or perform specific
-                actions.
-              </li>
-              <li>
-                <strong>Framework:</strong> The structural environment within
-                which the agent operates, providing methodologies for task
-                planning, execution, and tool integration.
-              </li>
-              <li>
-                <strong>Reasoning Capabilities:</strong> The ability to break
-                down complex tasks, plan steps, and adjust strategies based on
-                intermediate results.
-              </li>
-            </ul>
           </div>
 
           
 
-          <h2 id="model-tuning">How Today's Models Are Tuned for Agents</h2>
-          <div class="body">
-            <p>
-              Advances in LLM development have led to models specifically
-              optimized for agent-like tasks. For example:
-            </p>
-            <ul>
-              <li>
-                <strong>Mixtral:</strong> Utilizing a Mixture-of-Experts
-                architecture, Mixtral activates only relevant subnetworks,
-                allowing for more context-aware responses in tasks that require
-                specialization.
-              </li>
-              <li>
-                <strong>Llama 3.1:</strong> Fine-tuned for tool use, Llama 3.1
-                interacts with external tools, such as market data fetchers and
-                graph plotters, making it highly suitable for agent tasks
-                requiring data manipulation.
-              </li>
-              <li>
-                <strong>OpenAI o1 models:</strong> These models excel at
-                chain-of-thought reasoning, task planning, and multi-step
-                problem solving, essential for agents handling complex tasks.
-                Their ability to generate and execute code further enhances
-                their versatility in agent-like tasks.
-              </li>
-            </ul>
-            <p>
-              While these models are a step forward, additional research and
-              fine-tuning are required to build models that fully emulate the
-              reasoning, planning, and adaptive behaviors critical for
-              sophisticated agents.
-            </p>
-          </div>
+       
 
-          <h2 id="agent-examples">Interesting Examples of Agents</h2>
+          <h2 id="agent-examples">Case Studies</h2>
           <div class="body">
             <p>
-              The following examples illustrate the diverse capabilities of
-              agents within the Arena:
-            </p>
-            <ul>
-              <li>
-                <strong>LangChain Pandas DataFrame Agent:</strong> This agent
-                can analyze large financial datasets, such as General Electric's
-                CSV files, and compute key metrics like return rates based on
-                user prompts.
-              </li>
-              <li>
-                <strong>Alpha Vantage Stock Agent:</strong> Using LangChain's
-                integration with the Alpha Vantage API, this agent can retrieve
-                real-time stock price information and present it to the user.
-              </li>
-              <li>
-                <strong>Search Agents:</strong> Search agents integrated with
-                real-time APIs like Brave Search and Google Serper can retrieve
-                up-to-date information and answer queries based on the latest
-                data.
-              </li>
-              <li>
-                <strong>LangChain Code Interpreter:</strong> Equipped with a
-                robust code interpreter, this agent can execute code on the fly,
-                making it highly effective for problem-solving in technical
-                tasks.
-              </li>
-            </ul>
-            <p>
-              These examples showcase the wide range of functionalities
-              available within Agent Arena, demonstrating the platform's ability
-              to evaluate diverse agent capabilities.
+                Some cool examples of runs @nithik
             </p>
           </div>
 
