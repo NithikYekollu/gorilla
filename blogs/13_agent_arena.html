@@ -228,7 +228,8 @@
                         <p></p>
                         <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik
                             Yekollu</a>
-                        <a class="author" href="#">Arth Bohra</a>
+                        <a class="author" href="https://www.linkedin.com/in/arthbohra/">Arth Bohra</a>
+                        <a class="author" href="https://www.linkedin.com/in/ashwin-chirumamilla-91103b1b5/">Ashwin Chirumamilla</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir Patil</a>
                         <p></p>
                     </h4>
@@ -686,10 +687,6 @@
                             <h5>Increasing the Number of LLM & Framework Providers on the Platform</h5>
                             <p>
                                 One of the primary goals of the Agent Arena is to show users <i>all</i> of the combinations of agents that they can build, so they can definitely know which options are the best suited for their use-cases. While we currently offer the main providers in each category, we hope to expand our selection to include more niche providers that are specialized in certain tasks. 
-
-                                -providers can know which tools, and models are popular can integrate them based off that 
-                                -cater to specific use-case
-                                -general feedback on workflows and how agent responses are displayed compared to other providers - kinda iffy on this point
                             </p>g
                             <h5>Incorporating User Personalization</h5>
                             <p>
@@ -706,16 +703,25 @@
                 ">
                                     <b>Task:</b> "Search for the top 5 performing stocks this year in the S&P 500 and then find the latest news about them."
                             </blockquote>
-                            <ol>
-                                <li><strong>Increasing the providers and frameworks on the platform</strong>: There are dozens of smaller, open-source models that have been </li>
-                                <li>Incorporating user-personalization</li>
-                                <li>Enabling multi-turn prompts</li>
-                                <li>Expanding the capabilities of the platform</li>
-                                <li>Improving the analytics provided by Agent Arena</li>
-                                <li>Recommendation Algorithm</li>
-                                <li>Reasoning Based Models</li>
-                            </ol>
-
+                            <p>
+                                This task requires the agent to first find the top 5 stocks, keep it somewhere in backend 'memory',and then call another set of individual tools to find the latest news about them. This is a multi-turn prompt, and other examples can start to involve 5+ steps. We plan on releasing this feature in the upcoming few months for users.
+                            </p>
+                            <h5>Expanding the Capabilities of the Platform</h5>
+                            <p>
+                                The current implementation of the platform has left several domains of agent use-cases unexplored. More specifically, we hope to start integrating with APIs like Jira, Github, GSuite and other tools to enable users to actually run agents on their personal data. While this will involve a lot of security and privacy considerations, we believe this is a critical step in making the platform more useful to users.
+                            </p>
+                            <h5>Improving the Analytics Provided by Agent Arena</h5>
+                            <p>
+                                @nithik
+                            </p>
+                            <h5>Improving the Recommendation Algorithm</h5>
+                            <p>
+                                Based on user preferences and the providers/frameworks they like, we plan on improving the routing of goals to more relevant agents for the user. Additionally, we will include two different modes of routing: one that is more exploratory and one that is more focused on the user's preferences.
+                            </p>
+                            <h5>Reasoning Based Models</h5>
+                            <p>
+                                With the recent release of reasoning based models like OpenAI's o1 models, a short-term goal of ours is to integrate these models into the platform. With this, we will benchmrk their performance against the top models in the leaderboards and explore their importance to different use-cases.
+                            </p>
                         </div>
 
                         <h2 id="conclusion">Conclusion</h2>
