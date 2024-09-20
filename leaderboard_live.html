@@ -25,9 +25,9 @@
     <meta name="description"
         content="Explore The Berkeley Function Calling Leaderboard (also called The Berkeley Tool Calling Leaderboard) to see the LLM's ability to call functions (aka tools) accurately." />
     
-    <!-- Include Semantic UI CSS -->
+        <!-- Include Semantic UI CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
-
+        
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
@@ -35,13 +35,12 @@
     <link rel="stylesheet" href="assets/css/common-styles.css" />
     <link rel="stylesheet" href="assets/css/Highlight-Clean-leaderboard.css" />
     <link rel="stylesheet" href="assets/css/leaderboard.css" />
-    <link rel="stylesheet" href="assets/css/leaderboard_main.css" />
+    <link rel="stylesheet" href="assets/css/leaderboard_live.css" />
     <link rel="stylesheet" href="assets/css/treemap.css" />
     <link rel="stylesheet" href="assets/css/contact.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
-    
     <title>
-        Berkeley Function Calling Leaderboard V2 (aka Berkeley Tool Calling Leaderboard V2)
+        Berkeley Function Calling Leaderboard V2 Live(aka Berkeley Tool Calling Leaderboard V2 Live)
     </title>
 
 </head>
@@ -88,7 +87,7 @@
     <!-- Leaderboard Section -->
     <div class="container" id="leaderboard" style="background: #e5effc">
         <div class="col-md-12">
-            <h2>BFCL Leaderboard</h2>
+            <h2>BFCL Live Leaderboard</h2>
 
             <p class="text-center">
                 The Berkeley Function Calling Leaderboard V2 (also called Berkeley Tool Calling Leaderboard V2) evaluates the
@@ -106,7 +105,7 @@
             </div>
             <div style="margin-bottom: 15px;">
                 <button id="expand-btn" onclick="toggleExpand()">Expand/Collapse Table</button>
-                <button id="v2-btn" onclick="window.location.href='leaderboard_live.html'">See Only Live Category</button>            
+                <button id="v1-btn" onclick="window.location.href='leaderboard.html'">See All Category</button>        
             </div>
             <div class="table-container">
                 <table id="leaderboard-table">
@@ -118,9 +117,6 @@
                             <th class="detail-header" colspan="4">
                                 Abstract Syntax Tree (AST) Evaluation
                             </th>
-                            <th class="detail-header" colspan="4">
-                                Evaluation by Executing APIs
-                            </th>
                             <th class="detail-header" colspan="2">Irrelevance Detection</th>
                             <th class="detail-header" colspan="2"></th>
                         </tr>
@@ -131,7 +127,6 @@
                             <th class="summary-small-header">Cost ($)</th>
                             <th class="summary-small-header">Average Latency (s)</th>
                             <th class="summary-small-header">AST Summary</th>
-                            <th class="summary-small-header">Exec Summary</th>
                             <th class="summary-small-header">Irrelevance</th>
                             <th class="summary-small-header">Relevance</th>
                             <th class="detail-small-header">Cost ($)</th>
@@ -141,11 +136,7 @@
                             <th class="detail-small-header">Simple</th>
                             <th class="detail-small-header">Multiple</th>
                             <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Simple</th>
-                            <th class="detail-small-header">Multiple</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Parallel</th>
+                            <th class="detail-small-header">Parallel Multiple</th>
                             <th class="detail-small-header">Irrelevance</th>
                             <th class="detail-small-header">Relevance</th>
                             <th>Organization</th>
@@ -167,9 +158,8 @@
                 the <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#cost">blog</a>.
             </p>
             <p>
-                <b>AST Summary</b> is the <b>unweighted</b> average of the four test categories under AST Evaluation.
-                <b>Exec Summary</b> is the <b>unweighted</b> average of the four test categories under Exec Evaluation.
-                <b>Overall Accuracy</b> is the <b>unweighted</b> average of all the sub-categories.
+                <b>AST Summary</b> is the <b>weighted</b> average of the four test categories under AST Evaluation.
+                <b>Overall Accuracy</b> is the <b>weighted</b> average of all the sub-categories.
             </p>
             <p>
                 Click on column header to sort. If you would like to add
@@ -228,7 +218,7 @@
             (coming soon).
         </p>
 
-        <div id="65eaa7cb-b38b-4e90-b8e2-7be2b3d11428" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+        <div id="5634d6f5-8396-4f47-b936-a1319f3cfc79" class="plotly-graph-div" style="height:100%; width:100%;"></div>
     </div>
 
     <!-- API Explorer Section -->
@@ -348,7 +338,7 @@
 <!-- Include Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="index_main.js"></script>
-<script type="text/javascript" src="treemap_main.js"></script>
+<script src="index_live.js"></script>
+<script type="text/javascript" src="treemap_live.js"></script>
 
 </html>
