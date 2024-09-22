@@ -213,7 +213,6 @@ code {
     color: #333;
     max-width: 100%;
     margin: 0 auto;
-    padding: 20px 0;
 }
 
 #ranking-methodology h3, 
@@ -537,7 +536,6 @@ code {
                         <p>This comparison is fruitful because it allows the platform and the user to understand the nuances in the agents' capabilities and the different ways they can approach the same task. Then, they themselves can vote for which style they like better.
                     </p>
                 </div>
-
              
                     <h2 id="evaluation-ranking">
                         Evaluation and Ranking System
@@ -551,6 +549,10 @@ code {
                         <p>
                             The rating system in Agent Arena is designed to reflect the cumulative performance of agents across a wide range of tasks, taking into account factors such as:
                         </p>
+                        <figure style="margin-right: 10px; text-align: center;">
+                            <img src="../assets/img/blog_post_13_leaderboards1.jpeg" style="width: 50%;">
+                            <figcaption>The leaderboards analyzing the subcomponents of the agents.</figcaption>
+                        </figure>
                         <ul>
                             <li>
                                 <strong>Model performance:</strong> Evaluating the effectiveness of the underlying LLM models (e.g., GPT-4, Claude, Llama 3.1).
@@ -562,31 +564,7 @@ code {
                                 <strong>Framework functionality:</strong> Assessing the broader frameworks that support agents, such as LangChain, LlamaIndex, and CrewAI.
                             </li>
                         </ul>
-                        <p>Check out the latest rankings for each category on our leaderboard: <a href="https://www.agent-arena.com/leaderboard">Agent Arena Leaderboard</a>.</p>
-                    </div>
-                    
-                    <div id="images" style="display: flex; justify-content: center; margin-bottom: 20px;">
-                        <figure style="margin-right: 10px; text-align: center;">
-                            <img src="../assets/img/blog_post_13_frameworkleaderboard.jpeg" style="width: 100%;">
-                            <figcaption>Framework Leaderboard</figcaption>
-                        </figure>
-                        <figure style="text-align: center;">
-                            <img src="../assets/img/blog_post_13_agentleaderboard.jpeg" style="width: 100%;">
-                            <figcaption>Agent Leaderboard</figcaption>
-                        </figure>
-                    </div>
-                    <div id="images-2" style="display: flex; justify-content: center;">
-                        <figure style="margin-right: 10px; text-align: center;">
-                            <img src="../assets/img/blog_post_13_tool_leaderboard.jpeg" style="width: 100%;">
-                            <figcaption>Tool Leaderboard</figcaption>
-                        </figure>
-                        <figure style="text-align: center;">
-                            <img src="../assets/img/blog_post_13_modelleaderboard.jpeg" style="width: 100%;">
-                            <figcaption>Model Leaderboard</figcaption>
-                        </figure>
-                    </div>
-                    
-                    <div class="body">
+                    <p>Check out the latest rankings for each category on our leaderboard: <a href="https://www.agent-arena.com/leaderboard">Agent Arena Leaderboard</a>.</p>
                         <div id="ranking-methodology">
                             <h3>⚖️ Explaining the Elo: Bradley-Terry Model and Subcomponent Modifications</h3>
                             <div class="body">
@@ -720,38 +698,11 @@ code {
                                 Through the process of building out the agent arena and literature analysis, we were
                                 able to observe the several different "skills" that comprise of an agent's performance.
                                 More specifically, different use-cases required different levels of these "skills" in
-                                order to get the final answer correct. Here are some of the key skills that we observed:
-                            <ul>
-                                <li>
-                                    <strong>Analysis:</strong> This constitutes of both qualitative and quantitative
-                                    analysis. The ability to look at a data, however unstructured, and make sense of it.
-                                </li>
-                                <li>
-                                    <strong>Long-Context Understanding:</strong> A lot of agentic tasks require parsing
-                                    and looking through large documents / datasets to find the right information to
-                                    answer a question or proceed to a next step. Therefore, the model's ability to
-                                    perform accurately in long context scenarios is crucial.
-                                </li>
-                                <li>
-                                    <strong>Planning:</strong> The ability to plan out a series of steps to solve a
-                                    problem. This is crucial in tasks that require a sequence of actions to be taken.
-                                </li>
-                                <li>
-                                    <strong>Adaptation:</strong> The ability to adapt to changing circumstances and
-                                    adjust the approach accordingly. This is essential in tasks that involve dynamic
-                                    environments. Within this, the ability to backtrack and properly correct and learn
-                                    from mistakes is very important.
-                                </li>
-                                <li>
-                                    <strong>Computation</strong> The ability to perform complex computations and
-                                    calculations. This is important in tasks that require data manipulation and
-                                    analysis.
-                                </li>
-                                <li>
-                                    <strong>Tool Use:</strong> The ability to interact with and choose the right
-                                    external tools and APIs to gather information or perform specific tasks.
-                                </li>
-                            </ul>
+                                order to get the final answer correct. Here are some of the key skills that we observed.
+                            <figure style="margin-right: 5px; text-align: center;">
+                                <img src="../assets/img/blog_post_13_properties of agents.jpg" style="width: 70%;">
+                                <figcaption>Some of the core properties of LLM agents that contribute to their task success.</figcaption>
+                            </figure>
                             </p>
                             <p>
                                 As these "skills" have become more important in the development of agents, we have seen
@@ -789,10 +740,7 @@ code {
 
                         <h2 id="agent-examples">Case Studies</h2>
                         <div class="body">
-                            <p>Your choice of model, framework, and tools will often differ greatly depending on domain applications and use cases. Domain-specific agent developer will need to find the optimal combination of these factors to maximize performance.</p>
-                            <div class="image-container">
-                                <img src="../assets/img/blog_13/ExampleAgentRun.png" alt="Example Agent Run"/>
-                            </div>
+                            <p>Your choice of model, framework, and tools will often differ greatly depending on domain applications and use cases. Domain-specific agent developer will need to find the optimal combination of these factors to maximize performance. The vision of the future is that eventually, agents will become accurate enough to the point where we will allow them to make informed and perhaps critical decisions without the need for a human in the loop. While there's ways to go, here are a few industries that could get shaken up by agents:</p>
                             <h3>Research & Knowledge Retrieval</h3>
                             <p>
                                 Before delving into any research project, establishing a solid foundation through the retrieval and analysis of relevant literature is crucial. However, sifting through extensive publications to find pertinent information can be exceedingly time-consuming. This process involves identifying key sections of existing works, discerning the novel contributions and nuances of your own initiatives, and ensuring a comprehensive review to avoid overlooking significant resources. Agents like those supported in the arena—such as arXiv, PubMed, and specialized search tools—can dramatically expedite this process. By efficiently fetching relevant research information from these platforms, they assist in conducting a comprehensive and efficient literature review, thereby accelerating the research initiation phase.
@@ -814,26 +762,25 @@ code {
                             <p>
                                 For developers and users interested in building/using agents, the platform will be a
                                 sandbox for them to perfect their agentic stack, with the right providers and frameworks
-                                tailored to their use-cases By providing a systematic way to run agents, compare them
+                                tailored to their use-cases 
+                                </p>
+                                <p>By providing a systematic way to run agents, compare them
                                 against each other, view advanced analytics for providers based on their use-case, and
                                 even view the prompts of similar users, we hope to deliver value to the agent-building
                                 community.
                             </p>
                             <p>
-                                For framework and LLM providers, the Agent Arena will allow ...
-                            </p>
-                            <p>
                                 To reach this vision, we have laid out a comprehensive roadmap of feature development and improvement. The general theme of these changes will be to improve the personalization of the arena to individual users along with expanding the available analytics. 
                             </p>
-                            <h5>Increasing the Number of LLM & Framework Providers on the Platform</h5>
+                            <h5>📈 Increasing the Number of LLM & Framework Providers on the Platform</h5>
                             <p>
                                 One of the primary goals of the Agent Arena is to show users <i>all</i> of the combinations of agents that they can build, so they can definitely know which options are the best suited for their use-cases. While we currently offer the main providers in each category, we hope to expand our selection to include more niche providers that are specialized in certain tasks. 
                                 </p>
-                            <h5>Incorporating User Personalization</h5>
+                            <h5>🧑‍💻 Incorporating User Personalization</h5>
                             <p>
                                 In order to make the platform as useful as possible, we want to ensure that users are met with specific recommendations on the latest releases and agents that are best suited for their use-cases. This will involve us learning their preferences in their providers and output formats, enabling us to then recommend the best agents for them.
                             </p>
-                            <h5>Enabling multi-turn prompts</h5>
+                            <h5>🪜 Enabling multi-turn prompts</h5>
                             <p>
                                 Most agentic tasks involve multiple steps of reasoning and action from the agent. This requires keeping track of the <i>state</i> of the context of the task. For example, take the following task:
                             </p>
@@ -847,15 +794,15 @@ code {
                             <p>
                                 This task requires the agent to first find the top 5 stocks, keep it somewhere in backend 'memory',and then call another set of individual tools to find the latest news about them. This is a multi-turn prompt, and other examples can start to involve 5+ steps. We plan on releasing this feature in the upcoming few months for users.
                             </p>
-                            <h5>Expanding the Capabilities of the Platform</h5>
+                            <h5>🏋️‍♀️ Expanding the Capabilities of the Platform</h5>
                             <p>
                                 The current implementation of the platform has left several domains of agent use-cases unexplored. More specifically, we hope to start integrating with APIs like Jira, Github, GSuite and other tools to enable users to actually run agents on their personal data. While this will involve a lot of security and privacy considerations, we believe this is a critical step in making the platform more useful to users.
                             </p>
-                            <h5>Improving the Recommendation Algorithm</h5>
+                            <h5>📊 Improving the Recommendation Algorithm</h5>
                             <p>
                                 Based on user preferences and the providers/frameworks they like, we plan on improving the routing of goals to more relevant agents for the user. Additionally, we will include two different modes of routing: one that is more exploratory and one that is more focused on the user's preferences.
                             </p>
-                            <h5>Reasoning Based Models</h5>
+                            <h5>🧠 Reasoning Based Models</h5>
                             <p>
                                 With the recent release of reasoning based models like OpenAI's o1 models, a short-term goal of ours is to integrate these models into the platform. With this, we will benchmrk their performance against the top models in the leaderboards and explore their importance to different use-cases.
                             </p>
