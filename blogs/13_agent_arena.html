@@ -464,6 +464,18 @@ code {
                         tuning, examples of agent use cases, and a roadmap for future
                         developments.
                     </p>
+                    <p>Quick Links:</p>
+                    <ul>
+                        <li>
+                            <strong>Arena:</strong> <a href="https://www.agent-arena.com/">Agent-Arena</a>
+                        </li>
+                        <li>
+                            <strong>Leaders:</strong> <a href="https://www.agent-arena.com/leaderboard">Agent Leaderboard</a>
+                        </li>
+                        <li>
+                            <strong>User Prompts:</strong> <a href=" https://www.agent-arena.com/users">Prompt Hub</a>
+                        </li>
+                    </ul>
                 </div>
 
                 <h2 id="core-functionality">The Agent Arena Platform</h2>
@@ -669,7 +681,7 @@ code {
                                 However, for the new approach, the loss function takes into account the combined influence of models, tools, and frameworks in a battle:
                               </p>
                               <div class="equation-block">
-                                <pre>BCELoss/Sigmoid(X^LLM B_LLM + X^Tool B_Tool + X^Framework B_Framework, Y)</pre>
+                                <pre>BCELoss(Sigmoid(X^LLM B_LLM + X^Tool B_Tool + X^Framework B_Framework, Y))</pre>
                               </div>
                               <p>
                                 This approach reflects how each subcomponent contributes to the overall result, providing more accurate rankings.
