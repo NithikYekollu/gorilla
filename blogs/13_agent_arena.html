@@ -339,12 +339,11 @@ code {
                         <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik
                             Yekollu</a>
                         <a class="author" href="https://www.linkedin.com/in/arthbohra/">Arth Bohra</a>
-                        <a class="author" href="https://www.linkedin.com/in/kaiwen129//">Kai Wen</a>
-                       <a class="author" href="https://www.linkedin.com/in/saikolasani/">Sai Kolasani</a>
-                        <a class="author" href="https://www.linkedin.com/in/ashwin-chirumamilla-91103b1b5/">Wei-Lin Chiang</a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~angelopoulos/">Anastasios Angelopoulos</a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
+                        <a class="author" href="https://www.linkedin.com/in/ashwin-chirumamilla-91103b1b5/">Ashwin Chirumamilla</a>
+                        <a class="author" href="https://www.linkedin.com/in/kaiwen129/">Kai Wen</a>
+                        <a class="author" href="https://www.linkedin.com/in/saikolasani/">Sai Kolasani</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph Gonzalez</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir Patil</a>
                         <p></p>
                     </h4>
@@ -353,11 +352,11 @@ code {
                 <img src="../assets/img/blog_post_13_arena_demo_final.gif" alt="Agent Arena introductory image"
                     style="width: 100%" />
                 <p width="80%" style="
-              text-align: center;
-              margin-left: 10%;
-              margin-right: 10%;
-              padding-bottom: -10px;
-            ">
+                    text-align: center;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    padding-bottom: -10px;
+                ">
                     <i style="font-size: 0.9em">
                         Agent Arena: Evaluating and Comparing LLM Agents Across Models,
                         Tools, and Frameworks
@@ -414,8 +413,16 @@ code {
                         border-left: 2px solid #ccc;
                       "><b>❓ And what about frameworks?</b> One platform might
                         have more API integrations but another might index the internet
-                        better. <b>What tools should I use?</b> Do I need tools that
-                        return stock prices or APIs that can return news about the market
+                        better. 
+                        </blockquote>
+                        <blockquote style="
+                        margin-left: 20px;
+                        padding-left: 10px;
+                        border-left: 2px solid #ccc;
+                        ">
+                        
+                        <strong><b>❓ What tools should I use?</b></strong> Do I need tools that
+                        return stock prices 📈 or APIs that can return news 📰 about the market
                         for this specific use-case.
                     </blockquote>
                     <p>
@@ -427,7 +434,7 @@ code {
                         compared against each other.
                     </p>
                     <p>
-                        Therefore, we decided to release <strong>Agent Arena</strong>, an
+                        Therefore, we decided to release <strong>🤖 Agent Arena</strong>, an
                         interactive sandbox where users can compare, visualize, and rate
                         agentic workflows <strong>personalized to their needs</strong>.
                         Through choosing their own combinations of tasks, LLM providers,
@@ -457,20 +464,16 @@ code {
 
                 <h2 id="core-functionality">The Agent Arena Platform</h2>
                 <div class="body">
-                    <p>
-                        At its core, Agent Arena allows for goal-based agent comparisons.
-                        On a high level, users will first input a task that they want to
-                        accomplish.
-                    </p>
+                   
                     
-                    <blockquote style="
-                margin-left: 20px;
-                padding-left: 10px;
-                border-left: 2px solid #ccc;
-              ">
-                        <b>For example:</b> "Analyze my spending over the last month and
-                        provide 3 recommendations to save money."
-                    </blockquote>
+                    <div class="image-container">
+                        <img src="../assets/img/blog_post_13_agent_arena_flowchart.jpg" alt="Executor Flow"/>
+                    </div>
+                        <p>
+                            At its core, Agent Arena allows for goal-based agent comparisons.
+                            On a high level, users will first input a task that they want to
+                            accomplish.
+                        </p>
                     <p>
                         Then, the user has two options: to either choose the agents that
                         they want to compare or let an LLM automatically assign relevant
@@ -520,27 +523,22 @@ code {
                         experimentation.
                     </p>
                     <p>
-                        For example, a user might input a financial task such as "retrieve
-                        and analyze AAPL stock prices from the previous day." The router
-                        would then assign agents that have demonstrated proficiency in
-                        handling financial data, such as agents integrated with tools like
-                        Yahoo Finance API or LlamaIndex's financial toolkit. In this way,
-                        the platform ensures that the agents selected for comparison are
-                        relevant to the user's query, providing an efficient and targeted
-                        evaluation process.
+                        For example, a user might provide the following: <code>input("Tell me about whats going on in NVIDIA in the last week.")</code> The router would then select two suitable options given the available agents and the leaderboard ELOs.
+                        For this use-case, the router might select the agent
+                        <code>
+                            agent_a = Agent(model="GPT-4o", tools=["Yahoo Finance", "Matplotlib"], framework="Langchain")
+                        </code>
+                        to analyze the stock information about NVIDIA. On the other side, to compare against Agent A, the router might select the combination: 
+                        <code>
+                            agent_b = Agent(model="Claude", tools=["Yahoo News"], framework="CrewAI")
+                        </code> to observe the goal from the perspective of news. 
+                        
+                        </p>
+                        <p>This comparison is fruitful because it allows the platform and the user to understand the nuances in the agents' capabilities and the different ways they can approach the same task. Then, they themselves can vote for which style they like better.
                     </p>
                 </div>
 
-                <h2 id="executor">The Executor: Running the Selected Agents</h2>
-                <div class="body">
-                    <p>
-                        Each agent in the database is mapped to some code that can be executed in Python to run it.
-                        Errors, logs, and outputs are streamed back to the user in real-time.
-                    </p>
-                    <div class="image-container">
-                        <img src="../assets/img/blog_13/AgentExecutorFlow.png" alt="Executor Flow"/>
-                    </div>
-
+             
                     <h2 id="evaluation-ranking">
                         Evaluation and Ranking System
                     </h2>
