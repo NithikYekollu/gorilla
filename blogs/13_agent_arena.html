@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-NRZJLJCSH6");
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <title>
+        Agent Arena: A Platform for Evaluating and Comparing LLM Agents
+    </title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+    <link rel="stylesheet" href="../assets/css/blog.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        pre {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+}
+code {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+        body {
+            font-family: "Source Sans Pro", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            justify-content: center;
+        }
+
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        .blog-title {
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+            display: flex;
+            margin-bottom: 0px;
+            justify-content: center;
+        }
+
+        .author {
+            font-size: 16px;
+            color: #1e90ff;
+            margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .box-index {
+            position: fixed;
+            top: 50%;
+            left: 0px;
+            transform: translateY(-50%);
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 150px;
+        }
+
+        .box-index h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .box-index ul {
+            list-style-type: disc;
+            padding: 0;
+        }
+
+        .box-index ul li {
+            margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .box-index ul li a:hover {
+            color: #1e90ff;
+        }
+
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px;
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        @media screen and (max-width: 1000px) {
+            .blog-post {
+                padding: 10px;
+                /* Adjust spacing for smaller screens */
+                max-width: 90%
+            }
+
+            .blog-post img {
+                max-width: 90%;
+            }
+
+            .box-index {
+                display: none;
+                /* Hide the index on smaller screens */
+            }
+        }
+
+    .citation-container {
+        font-family: Arial, sans-serif;
+    }
+    .citation-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .citation-intro {
+        color: #444;
+        margin-bottom: 20px;
+    }
+    .citation-block {
+        white-space: pre-wrap;
+        width: 100%;
+        overflow-x: auto;
+        background-color: #f4f4f4;
+        color: #333;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-family: Courier, monospace;
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .author-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.author {
+    white-space: nowrap;
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+#ranking-methodology {
+    font-family: "Source Sans Pro", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+#ranking-methodology h3, 
+#ranking-methodology h4, 
+#ranking-methodology h5 {
+    color: #2c3e50;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+#ranking-methodology p {
+    margin-bottom: 1em;
+}
+
+#ranking-methodology ul {
+    padding-left: 20px;
+    margin-bottom: 1em;
+}
+
+#ranking-methodology .equation-block {
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+#ranking-methodology .equation-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    #ranking-methodology .equation-block {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .equation-block {
+        max-width: 95%;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="
+        position: absolute;
+        top: 0;
+        right: 20px;
+        padding: 10px;
+        z-index: 100;
+        font-size: 18px;
+      ">
+        <a href="/index.html">Home</a>
+        <a href="/blog.html">Blogs</a>
+        <a href="/leaderboard.html">Leaderboard</a>
+        <a href="/apizoo/">API Zoo Index</a>
+    </div>
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px">
+        <h1 class="text-center" style="padding-bottom: 10px">
+            🦍 Gorilla: Large Language Model Connected with Massive APIs
+        </h1>
+        <div class="box-index">
+            <h3>Agent Arena</h3>
+            <ul>
+                <ul>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#platform-overview">Platform Overview</a></li>
+                    <li><a href="#core-functionality">Core Functionality</a></li>
+                    <li><a href="#router">The Router</a></li>
+                    <li><a href="#evaluation-ranking">Evaluation and Ranking</a></li>
+                    <li><a href="#key-features">Key Features</a></li>
+                    <li><a href="#example-tasks">Example Tasks</a></li>
+                    <li><a href="#agents-definition">What Are Agents?</a></li>
+                    <li><a href="#ranking-methodology">Ranking Methodology</a></li>
+                    <li><a href="#model-tuning">Model Tuning for Agents</a></li>
+                    <li><a href="#agent-examples">Interesting Agent Examples</a></li>
+                    <li><a href="#roadmap">Next Steps and Roadmap</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                    <li class="more-blogs">
+                        <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span
+                                class="caret">&#9654;</span></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="7_open_functions_v2.html">Gorilla OpenFunctions-v2</a>
+                            </li>
+                            <li>
+                                <a href="6_api_zoo.html">The API Zoo: A Keystone for Building API-connected LLMs</a>
+                            </li>
+                            <li>
+                                <a href="5_how_to_gorilla.html">How to Use Gorilla: A Step-by-Step Walkthrough</a>
+                            </li>
+                            <li>
+                                <a href="4_open_functions.html">Gorilla OpenFunctions</a>
+                            </li>
+                            <!-- Add more blog entries as needed -->
+                        </ul>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <h2 class="blog-title">Agent Arena</h2>
+                <div class="col-md-12">
+                    <h4 class="text-center" style="margin: 0px">
+                        <p></p>
+                        <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik
+                            Yekollu</a>
+                        <a class="author" href="https://www.linkedin.com/in/arthbohra/">Arth Bohra</a>
+                        <a class="author" href="https://www.linkedin.com/in/ashwin-chirumamilla-91103b1b5/">Ashwin Chirumamilla</a>
+                        <a class="author" href="https://www.linkedin.com/in/kaiwen129/">Kai Wen</a>
+                        <a class="author" href="https://www.linkedin.com/in/saikolasani/">Sai Kolasani</a>
+                        <a class="author" href="https://infwinston.github.io/">Wei-Lin Chiang</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~angelopoulos//">Anastasios Angelopoulos</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph Gonzalez</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir Patil</a>
+                        <p></p>
+                    </h4>
+                </div>
+
+                <img src="../assets/img/blog_post_13_arena_demo_final.gif" alt="Agent Arena introductory image"
+                    style="width: 100%" />
+                <p width="80%" style="
+                    text-align: center;
+                    margin-left: 10%;
+                    margin-right: 10%;
+                    padding-bottom: -10px;
+                ">
+                    <i style="font-size: 0.9em">
+                        Agent Arena: Evaluating and Comparing LLM Agents Across Models,
+                        Tools, and Frameworks
+                    </i>
+                </p>
+
+                <div class="preview">
+                    <h2 id="introduction">Introduction</h2>
+                    <p>
+                        With the rapid growth of Large Language Model (LLM) agents, the
+                        need for a unified and systematic way to evaluate them has become
+                        paramount. Assessing agents based on granular function calling or
+                        task-specific performance doesn't capture their overall
+                        capabilities.
+                    </p>
+
+                    <p>
+                        LLM Agents are being used across a diverse set of use-cases, from
+                        search and code generation to complex tasks like finance and
+                        research. In practice, these agents are built using LLM models 
+                        (e.g GPT-4, Claude, Llama 3.1), frameworks (LangChain, LlamaIndex,
+                        CrewAI, and plenty more), and tools (code interpreters, APIs like
+                        Brave Search or Yahoo Finance). 
+                        </p>
+                        <p>
+                        With so many emerging providers in all three of these categories, 
+                        with often nuanced differences in capability and performance, 
+                        there are endless combinations of agents that can be built, 
+                        but no definitive way to evaluate them against each other.
+                    </p>
+                    <p>
+                        It's important to clarify the point about the nuances in model and
+                        framework performance. We note that there are hundreds of robust
+                        evaluations of LLMs on various benchmarks (code, summarization,
+                        q&a) and similarly, numerous documentations of the differences in
+                        capabilities/tools of frameworks.
+                    </p>
+                    <p>
+                        For example, let's say I wanted to build a financial assistant
+                        that retrieves the top performing stocks of the week.
+                    </p>
+                    <blockquote style="
+                margin-left: 20px;
+                padding-left: 10px;
+                border-left: 2px solid #ccc;
+              ">
+                        <strong><b>❓What model should I use?</b></strong> One model have been trained on far
+                        more financial data 💸, while another may excel in reasoning ♟️ and
+                        computation ➗. 
+                        </blockquote>
+                        <blockquote style="
+                        margin-left: 20px;
+                        padding-left: 10px;
+                        border-left: 2px solid #ccc;
+                      "><b>❓ And what about frameworks?</b> One platform might
+                        have more API integrations but another might index the internet
+                        better. 
+                        </blockquote>
+                        <blockquote style="
+                        margin-left: 20px;
+                        padding-left: 10px;
+                        border-left: 2px solid #ccc;
+                        ">
+                        
+                        <strong><b>❓ What tools should I use?</b></strong> Do I need tools that
+                        return stock prices 📈 or APIs that can return news 📰 about the market
+                        for this specific use-case.
+                    </blockquote>
+                    <p>
+                        As this example illustrates, there is so much to think about when
+                        designing an agentic workflow - and this is only one use-case out
+                        of potentially dozens in the financial domain alone. Different
+                        use-cases will call for different combinations of models, tools,
+                        and frameworks and currently, there is no platform that shows them
+                        compared against each other.
+                    </p>
+                    <p>
+                        Therefore, we decided to release <strong>🤖 Agent Arena</strong>, an
+                        interactive sandbox where users can compare, visualize, and rate
+                        agentic workflows <strong>personalized to their needs</strong>.
+                        Through choosing their own combinations of tasks, LLM providers,
+                        frameworks, tools, etc and also vote on their performance, we
+                        enable users to see how different agents perform against each
+                        other in a structured and systematic way. By doing this, we
+                        believe that our users can make more informed decisions regarding
+                        their <i>agentic stack</i>.
+                    </p>
+                    <p>
+                        On top of providing benefit to our users, we also release live
+                        leaderboards and rankings of LLM providers, frameworks, and tools
+                        by domain, along with a prompt hub of over 1000+ tested tasks. We
+                        hope that this will provide a valuable resource for the community
+                        to understand the capabilities of the latest LLMs and tools.
+                        Additionally, we believe these rankings can help inform provider
+                        and framework development, helping them understand where they
+                        stand on various use-cases and how they can improve
+                    </p>
+                    <p>
+                        This blog post will delve into the key elements of Agent Arena,
+                        including the definition of agents, the ranking methodology, model
+                        tuning, examples of agent use cases, and a roadmap for future
+                        developments.
+                    </p>
+                </div>
+
+                <h2 id="core-functionality">The Agent Arena Platform</h2>
+                <div class="body">
+                   
+                    
+                    <div class="image-container">
+                        <img src="../assets/img/blog_post_13_agent_arena_flowchart.jpg" alt="Executor Flow"/>
+                    </div>
+                        <p>
+                            At its core, Agent Arena allows for goal-based agent comparisons.
+                            On a high level, users will first input a task that they want to
+                            accomplish.
+                        </p>
+                    <p>
+                        Then, the user has two options: to either choose the agents that
+                        they want to compare or let an LLM automatically assign relevant
+                        agents based on the task. These agents are then tasked with
+                        completing the goal, with the agent's actions and
+                        <i>chain of thought</i> being streamed to the user in real-time.
+                        Once the agents have completed the task, the user can compare the
+                        outputs side-by-side and vote on which agent performed better.
+                    </p>
+                    <p>
+                        The evaluation process includes voting on agent performance, with
+                        users assessing which agent met the task's requirements more
+                        effectively. This user-driven evaluation contributes to an
+                        evolving leaderboard system, which ranks agents based on their
+                        relative performance across multiple tasks and competitions. This
+                        comparison is not limited to the agents as a whole but extends to
+                        the individual components (i.e., LLM models, tools, and
+                        frameworks) that comprise each agent.
+                    </p>
+                    <p>
+                        In the sections below, we will delve further into the core
+                        components of Agent Arena, including the router system, execution, evaluation
+                        and ranking mechanisms, leaderboard, and prompt hub.
+                        We will also explore some example tasks and applications that can be performed on the platform.
+                    </p>
+                </div>
+
+                <h2 id="router">The Router: Agent Matching and Task Assignment</h2>
+                <div class="body">
+                    <p>
+                        A central element of Agent Arena is its router system, which is
+                        powered by GPT-4o. The router's primary function is to match
+                        users' specified goals with the most suitable agents available on
+                        the platform. This task assignment process is based on a set of
+                        predefined algorithms that consider the specific capabilities of
+                        the agents and the requirements of the task at hand.
+                    </p>
+                    <p>
+                        The router operates by analyzing the user's input (the goal or
+                        task) and selecting two agents that are optimally suited to
+                        complete that task. This selection process factors in the agents'
+                        historical performance across similar tasks, as well as their
+                        configurations in terms of models, tools, and frameworks. While
+                        the system provides an automated matching process, users have the
+                        option to manually adjust the agent selection by choosing from a
+                        list of available agents, thus providing flexibility for tailored
+                        experimentation.
+                    </p>
+                    <p>
+                        For example, a user might provide the following: <code>input("Tell me about whats going on in NVIDIA in the last week.")</code> The router would then select two suitable options given the available agents and the leaderboard ELOs.
+                        For this use-case, the router might select the agent
+                        <code>
+                            agent_a = Agent(model="GPT-4o", tools=["Yahoo Finance", "Matplotlib"], framework="Langchain")
+                        </code>
+                        to analyze the stock information about NVIDIA. On the other side, to compare against Agent A, the router might select the combination: 
+                        <code>
+                            agent_b = Agent(model="Claude", tools=["Yahoo News"], framework="CrewAI")
+                        </code> to observe the goal from the perspective of news. 
+                        
+                        </p>
+                        <p>This comparison is fruitful because it allows the platform and the user to understand the nuances in the agents' capabilities and the different ways they can approach the same task. Then, they themselves can vote for which style they like better.
+                    </p>
+                </div>
+             
+                    <h2 id="evaluation-ranking">
+                        Evaluation and Ranking System
+                    </h2>
+                    
+                    <div class="body">
+                        <p>
+                            Agent Arena employs a comprehensive ranking system that evaluates agents based on their performance in head-to-head comparisons. The leaderboard ranks agents not only based on their overall performance but also by breaking down the performance of individual components such as LLM models, tools, and frameworks.
+                            The ranking process is informed by both user evaluations and an ELO-based rating system, commonly used in competitive ranking environments, where agent performance is dynamically adjusted after each task or comparison.
+                        </p>
+                        <p>
+                            The rating system in Agent Arena is designed to reflect the cumulative performance of agents across a wide range of tasks, taking into account factors such as:
+                        </p>
+                        <figure style="margin-right: 10px; text-align: center;">
+                            <img src="../assets/img/blog_post_13_leaderboards1.jpeg" style="width: 50%;">
+                            <figcaption>The leaderboards analyzing the subcomponents of the agents.</figcaption>
+                        </figure>
+                        <ul>
+                            <li>
+                                <strong>Model performance:</strong> Evaluating the effectiveness of the underlying LLM models (e.g., GPT-4, Claude, Llama 3.1).
+                            </li>
+                            <li>
+                                <strong>Tool efficiency:</strong> Ranking the tools agents use to complete tasks (e.g., code interpreters, APIs like Brave Search or Yahoo Finance).
+                            </li>
+                            <li>
+                                <strong>Framework functionality:</strong> Assessing the broader frameworks that support agents, such as LangChain, LlamaIndex, and CrewAI.
+                            </li>
+                        </ul>
+                    <p>Check out the latest rankings for each category on our leaderboard: <a href="https://www.agent-arena.com/leaderboard">Agent Arena Leaderboard</a>.</p>
+                        <div id="ranking-methodology">
+                            <h3>⚖️ Explaining the Elo: Bradley-Terry Model and Subcomponent Modifications</h3>
+                            <div class="body">
+                              <p>
+                                The Bradley-Terry (BT) model is a well-established probabilistic method used to rank entities based on pairwise comparisons. In the context of <strong>Agent Arena</strong>, this model serves as the backbone for evaluating and ranking Large Language Model (LLM) agents. In our system, we assess not just the overall agent performance but also break it down into its core subcomponents—like models, tools, and frameworks. 🛠️
+                              </p>
+                          
+                              <h3>🔢 Traditional Elo System</h3>
+                              <p>
+                                The traditional Elo system is widely known for ranking entities, especially in competitive settings like chess. It computes ratings dynamically as agents compete. The formula is simple but powerful:
+                              </p>
+                              <div class="equation-block">
+                                <pre>ELO_New = ELO_Old + K × (Result - Expected_Score)</pre>
+                              </div>
+                              <p>Where:</p>
+                              <ul>
+                                <li><strong>K</strong> controls the magnitude of rating changes after each battle (in Agent Arena, we use K = 4).</li>
+                                <li><strong>Result</strong> is 1 if the agent wins, 0 if it loses, or 0.5 for a tie.</li>
+                                <li><strong>Expected_Score</strong> is the calculated likelihood of an agent winning based on its current rating.</li>
+                              </ul>
+                          
+                              <h4>🧑‍💻 Example: LangChain Brave-Search Agent vs. LlamaIndex Wikipedia Agent</h4>
+                              <p>
+                                Consider the <strong>LangChain Brave-Search Agent</strong> (initial Elo: 1600) facing off against the <strong>LlamaIndex Wikipedia Agent</strong> (initial Elo: 1500). The expected score for Brave-Search, calculated based on their Elo difference, would be:
+                              </p>
+                              <div class="equation-block">
+                                <pre>Expected_Score_Brave = 1 / (1 + 10^((1500 - 1600) / 400)) ≈ 0.64</pre>
+                              </div>
+                              <p>This implies Brave-Search is expected to win 64% of the time. If Brave-Search wins, its new rating will be:</p>
+                              <div class="equation-block">
+                                <pre>ELO_Brave_New = 1600 + 4 × (1 - 0.64) = 1601.44</pre>
+                              </div>
+                              <p>If Brave-Search loses, the rating drops accordingly, and the Wikipedia agent's rating adjusts upward.</p>
+                          
+                              <h3>🔄 Subcomponent Battles: Tools, Models, and Frameworks</h3>
+                              <p>
+                                In Agent Arena, each agent is a composite of various components, including tools, models, and frameworks. Instead of just evaluating the full agents, we also assess the performance of each individual subcomponent. This allows us to more accurately pinpoint where an agent's strength lies. Here's an example:
+                              </p>
+                              <ul>
+                                <li><strong>LangChain Brave-Search Agent</strong>: LangChain (Framework), Brave-Search (Tool), GPT-4o-2024-08-06 (Model)</li>
+                                <li><strong>LlamaIndex Wikipedia Agent</strong>: LlamaIndex (Framework), Wikipedia (Tool), Claude-3-5-Sonnet-20240620 (Model)</li>
+                              </ul>
+                          
+                              <h4>📊 Traditional BT Model with Subcomponent Comparisons</h4>
+                              <p>
+                                Using a traditional Bradley-Terry setup, we could treat each subcomponent battle independently. For example, when comparing <strong>Brave-Search</strong> against <strong>Wikipedia</strong>, the probability that Brave-Search wins would be:
+                              </p>
+                              <div class="equation-block">
+                                <pre>P(Brave wins) = exp(score_Brave) / (exp(score_Brave) + exp(score_Wikipedia))</pre>
+                              </div>
+                          
+                              <h4>🔄 Combined Subcomponent Rankings: Models + Tools + Frameworks</h4>
+                              <p>
+                                However, to get a holistic evaluation of an agent, we combine all its subcomponents into a single analysis. Instead of treating each subcomponent as an isolated entity, we consider their interaction within the broader agent architecture. For each battle, we build a design matrix <code>X</code> that represents all the subcomponents involved:
+                              </p>
+                              <div class="equation-block">
+                                <pre>X = [ +log(BASE), +log(BASE), +log(BASE), -log(BASE), -log(BASE), -log(BASE) ]</pre>
+                              </div>
+                              <p>
+                                Here, <code>+log(BASE)</code> represents the subcomponents (tool, model, framework) used by the winning agent, while <code>-log(BASE)</code> represents those used by the losing agent.
+                              </p>
+                          
+                              <h5>🛠️ Example: LangChain Brave-Search Agent vs. LlamaIndex Wikipedia Agent</h5>
+                              <p>
+                                If Brave-Search wins the battle, the design matrix would look like this:
+                              </p>
+                              <div class="equation-block">
+                                <pre>Components: [LangChain, Brave-Search, GPT-4o] vs. [LlamaIndex, Wikipedia, Claude]
+                          X = [ +log(BASE), +log(BASE), +log(BASE), -log(BASE), -log(BASE), -log(BASE) ]</pre>
+                              </div>
+                              <p>
+                                This allows us to evaluate the collective contribution of the subcomponents (tools, models, frameworks) in a single calculation. We then apply <strong>logistic regression with regularization</strong> to control for overfitting and confounding effects caused by frequent pairings.
+                              </p>
+                          
+                              <h3>📉 Regularization: Handling Data Imbalance</h3>
+                              <p>
+                                Given the diversity of agent configurations, certain agents may not battle frequently with others that have different components. This can lead to data sparsity. To counteract this, we use <strong>L1 regularization (Lasso)</strong>, which helps select the most important subcomponents while avoiding overfitting. The regularization formula is:
+                              </p>
+                              <div class="equation-block">
+                                <pre>Minimize: - [∑ Y_i log(P_i) + (1 - Y_i) log(1 - P_i)] + λ ∑|β_j|</pre>
+                              </div>
+                              <p>Where:</p>
+                              <ul>
+                                <li><strong>Y_i</strong> is the battle outcome (1 for win, 0 for loss).</li>
+                                <li><strong>P_i</strong> is the predicted probability of winning.</li>
+                                <li><strong>λ</strong> is the regularization parameter that controls sparsity.</li>
+                              </ul>
+                          
+                              <h4>🔎 Traditional Loss vs. Subcomponent Combined Loss</h4>
+                              <p>
+                                In a traditional BT model, the loss function calculates the difference between the predicted and actual outcomes for each battle, represented as:
+                              </p>
+                              <div class="equation-block">
+                                <pre>BCELoss(Sigmoid(X × β), Y)</pre>
+                              </div>
+                              <p>
+                                However, for the new approach, the loss function takes into account the combined influence of models, tools, and frameworks in a battle:
+                              </p>
+                              <div class="equation-block">
+                                <pre>BCELoss/Sigmoid(X^LLM B_LLM + X^Tool B_Tool + X^Framework B_Framework, Y)</pre>
+                              </div>
+                              <p>
+                                This approach reflects how each subcomponent contributes to the overall result, providing more accurate rankings.
+                              </p>
+                          
+                              <h3>✅ Conclusion: Fairer Rankings Across All Components</h3>
+                              <p>
+                                By using this combined approach, Agent Arena ensures more accurate rankings across agents and their subcomponents. 🔄 This method provides clearer insights into each agent's performance and contributions, preventing the bias that can occur from frequent pairings or overused configurations.
+                              </p>
+                              <p>🎉 As a result, our system generates a real-time, continuously updating leaderboard that not only reflects the agents' overall performance but also their specific subcomponent strengths. 🏆</p>
+                          
+                              <p>
+                                Check out our live leaderboards for agents, tools, models, and frameworks <a href="https://www.agent-arena.com/leaderboard" target="_blank">here</a>!
+                              </p>
+                            </div>
+                          </div>  
+                        <h2 id="example-tasks">The Prompt Hub</h2>
+                        <div class="body">
+                            <p>
+                                The Agent Arena also comes with a prompt hub that has over 1000+ tasks that have been
+                                tested and verified to work on the platform. Users will be able to search for similar
+                                use cases as theirs and observe how different prompts are executed and perform.
+                                Furthermore, the platform also enables users to post their prompts to the community.
+                            </p>
+
+                        </div>
+
+                        <h2 id="agents-definition">The Abilities of Agents</h2>
+                        <div class="body">
+                            <p>
+                                Through the process of building out the agent arena and literature analysis, we were
+                                able to observe the several different "skills" that comprise of an agent's performance.
+                                More specifically, different use-cases required different levels of these "skills" in
+                                order to get the final answer correct. Here are some of the key skills that we observed.
+                            <figure style="margin-right: 5px; text-align: center;">
+                                <img src="../assets/img/blog_post_13_properties of agents.jpg" style="width: 70%;">
+                                <figcaption>Some of the core properties of LLM agents that contribute to their task success.</figcaption>
+                            </figure>
+                            </p>
+                            <p>
+                                As these "skills" have become more important in the development of agents, we have seen
+                                a rise in the development of models that are specifically optimized for agent-like
+                                tasks. For example:
+                            </p>
+                            <ul>
+                                <li>
+                                    <strong>Mixtral:</strong> Utilizing a Mixture-of-Experts
+                                    architecture, Mixtral activates only relevant subnetworks,
+                                    allowing for more context-aware responses in tasks that require
+                                    specialization.
+                                </li>
+                                <li>
+                                    <strong>Llama 3.1:</strong> Fine-tuned for tool use, Llama 3.1
+                                    interacts with external tools, such as market data fetchers and
+                                    graph plotters, making it highly suitable for agent tasks
+                                    requiring data manipulation.
+                                </li>
+                                <li>
+                                    <strong>OpenAI o1 models:</strong> These models excel at
+                                    chain-of-thought reasoning, task planning, and multi-step
+                                    problem solving, essential for agents handling complex tasks.
+                                    Their ability to generate and execute code further enhances
+                                    their versatility in agent-like tasks.
+                                </li>
+                            </ul>
+                            <p>
+                                While these models are a step forward, additional research and
+                                fine-tuning are required to build models that fully emulate the
+                                reasoning, planning, and adaptive behaviors critical for
+                                sophisticated agents.
+                            </p>
+                        </div>
+
+                        <h2 id="agent-examples">Case Studies</h2>
+                        <div class="body">
+                            <p>Your choice of model, framework, and tools will often differ greatly depending on domain applications and use cases. Domain-specific agent developer will need to find the optimal combination of these factors to maximize performance. The vision of the future is that eventually, agents will become accurate enough to the point where we will allow them to make informed and perhaps critical decisions without the need for a human in the loop. While there's ways to go, here are a few industries that could get shaken up by agents:</p>
+                            <img src="../assets/img/blog_post_13.png" alt="Agent Analyst Example"
+                    style="width: 100%" />
+                            <h3>Research & Knowledge Retrieval 🔎</h3>
+                            <p>
+                                Before delving into any research project, establishing a solid foundation through the retrieval and analysis of relevant literature is crucial. However, sifting through extensive publications to find pertinent information can be exceedingly time-consuming. This process involves identifying key sections of existing works, discerning the novel contributions and nuances of your own initiatives, and ensuring a comprehensive review to avoid overlooking significant resources. Agents like those supported in the arena—such as arXiv, PubMed, and specialized search tools—can dramatically expedite this process. By efficiently fetching relevant research information from these platforms, they assist in conducting a comprehensive and efficient literature review, thereby accelerating the research initiation phase.
+                                Optimizing these knowledge retrieval and research agents in regards to all the models, frameworks, and tools available is a key step in the development of agents. 
+                            </p>
+                            <h3>Finance & Wealth Management 💰</h3>
+                            <p>
+                                Currently, in the United States, trillions of dollars are invested in index funds, exchange-traded funds (ETFs), and other passive investment vehicles. While these assets offer a convenient and efficient way for investors to diversify their portfolios with minimal effort through firms or brokerages, they may not fully align with the unique priorities, risk tolerances, and asset preferences of individual investors. Consequently, a finance and wealth management agent that actively researches, analyzes, and recommends assets could provide personalized advice beyond the general strategies employed by large firms. This represents a tangible application where individual users could significantly benefit from utilizing such agents in their investment decisions.
+                            </p>
+                        </div>
+
+                        <h2 id="roadmap">Next Steps and Project Roadmap</h2>
+                        <div class="body">
+                            <p>
+                                We have an exciting roadmap ahead for Agent Arena, with several initiatives planned to
+                                both enhance and expand the platform's capabilities. We envision that the agent arena
+                                will become a central hub for both agent developers and providers.
+                            </p>
+                            <p>
+                                For developers and users interested in building/using agents, the platform will be a
+                                sandbox for them to perfect their agentic stack, with the right providers and frameworks
+                                tailored to their use-cases 
+                                </p>
+                                <p>By providing a systematic way to run agents, compare them
+                                against each other, view advanced analytics for providers based on their use-case, and
+                                even view the prompts of similar users, we hope to deliver value to the agent-building
+                                community.
+                            </p>
+                            <p>
+                                To reach this vision, we have laid out a comprehensive roadmap of feature development and improvement. The general theme of these changes will be to improve the personalization of the arena to individual users along with expanding the available analytics. 
+                            </p>
+                            <h5>📈 Increasing the Number of LLM & Framework Providers on the Platform</h5>
+                            <p>
+                                One of the primary goals of the Agent Arena is to show users <i>all</i> of the combinations of agents that they can build, so they can definitely know which options are the best suited for their use-cases. While we currently offer the main providers in each category, we hope to expand our selection to include more niche providers that are specialized in certain tasks. 
+                                </p>
+                            <h5>🧑‍💻 Incorporating User Personalization</h5>
+                            <p>
+                                In order to make the platform as useful as possible, we want to ensure that users are met with specific recommendations on the latest releases and agents that are best suited for their use-cases. This will involve us learning their preferences in their providers and output formats, enabling us to then recommend the best agents for them.
+                            </p>
+                            <h5>🪜 Enabling multi-turn prompts</h5>
+                            <p>
+                                Most agentic tasks involve multiple steps of reasoning and action from the agent. This requires keeping track of the <i>state</i> of the context of the task. For example, take the following task:
+                            </p>
+                            <blockquote style="
+                margin-left: 20px;
+                padding-left: 10px;
+                border-left: 2px solid #ccc;
+                ">
+                                    <b>Task:</b> "Search for the top 5 performing stocks this year in the S&P 500 and then find the latest news about them."
+                            </blockquote>
+                            <p>
+                                This task requires the agent to first find the top 5 stocks, keep it somewhere in backend 'memory',and then call another set of individual tools to find the latest news about them. This is a multi-turn prompt, and other examples can start to involve 5+ steps. We plan on releasing this feature in the upcoming few months for users.
+                            </p>
+                            <h5>🏋️‍♀️ Expanding the Capabilities of the Platform</h5>
+                            <p>
+                                The current implementation of the platform has left several domains of agent use-cases unexplored. More specifically, we hope to start integrating with APIs like Jira, Github, GSuite and other tools to enable users to actually run agents on their personal data. While this will involve a lot of security and privacy considerations, we believe this is a critical step in making the platform more useful to users.
+                            </p>
+                            <h5>📊 Improving the Recommendation Algorithm</h5>
+                            <p>
+                                Based on user preferences and the providers/frameworks they like, we plan on improving the routing of goals to more relevant agents for the user. Additionally, we will include two different modes of routing: one that is more exploratory and one that is more focused on the user's preferences.
+                            </p>
+                            <h5>🧠 Reasoning Based Models</h5>
+                            <p>
+                                With the recent release of reasoning based models like OpenAI's o1 models, a short-term goal of ours is to integrate these models into the platform. With this, we will benchmrk their performance against the top models in the leaderboards and explore their importance to different use-cases.
+                            </p>
+                        </div>
+
+                        <h2 id="conclusion">Conclusion</h2>
+                        <div class="body">
+                            <p>
+                                Agent Arena is designed to address the growing need for a platform
+                                to evaluate and compare LLM agents. By offering a comprehensive
+                                ranking system and tools to test agents from various frameworks,
+                                the platform allows users to make informed decisions about the
+                                best models and tools for their specific needs. With continuous
+                                improvements and expansions planned, Agent Arena is set to play a
+                                pivotal role in shaping the future of LLM agent evaluation.
+                            </p>
+                            <p>
+                                As the field of AI continues to evolve rapidly, platforms like
+                                Agent Arena will become increasingly crucial in understanding and
+                                leveraging the capabilities of LLM agents. By providing a
+                                standardized environment for testing and comparison, Agent Arena
+                                not only aids in the selection of appropriate agents for specific
+                                tasks but also contributes to the overall advancement of AI
+                                technology.
+                            </p>
+                            <p>
+                                We invite researchers, developers, and AI enthusiasts to explore
+                                Agent Arena, contribute to its growth, and help shape the future
+                                of agent-based AI systems. Together, we can push the boundaries of
+                                what's possible with LLM agents and unlock new potentials in
+                                AI-driven problem-solving.
+                            </p>
+
+                            <hr class="post-separator" />
+                            <div>
+                                <p>
+                                    We hope you enjoyed this blog post. We would love to hear from you on <a
+                                        href="https://discord.gg/grXXvj9Whz">Discord</a>, <a
+                                        href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter
+                                        (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
+                                </p>
+                            </div>
+                </div>
+        </div>
+        <div class="citation-container">
+            <h4 class="citation-title">Citation</h4>
+            <p class="citation-intro">
+                If you would like to cite Agent Arena:
+            </p>
+            <pre class="citation-block"><code>@inproceedings{agent-arena,
+            title={Agent Arena},
+            author={Nithik Yekollu and Arth Bohra and Ashwin Chirumamilla and
+                    Wei-Lin Chiang and Anastasios Angelopoulos and Joseph E. Gonzalez and
+                    Ion Stoica and Shishir G. Patil},
+            year={2024},
+            howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/13_agent_arena.html}},
+}
+       </code></pre>
+        </div>
+    </div>
+
+        <script>
+            function toggleMoreBlogs() {
+                var subMenu = document.querySelector(".more-blogs .sub-menu");
+                var parentItem = document.querySelector(".more-blogs");
+                subMenu.classList.toggle("expanded");
+                parentItem.classList.toggle("expanded");
+            }
+        </script>
+</body>
+
+</html>
