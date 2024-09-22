@@ -168,6 +168,105 @@ code {
                 display: none;
             }
         }
+
+    .citation-container {
+        font-family: Arial, sans-serif;
+    }
+    .citation-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .citation-intro {
+        color: #444;
+        margin-bottom: 20px;
+    }
+    .citation-block {
+        white-space: pre-wrap;
+        width: 100%;
+        overflow-x: auto;
+        background-color: #f4f4f4;
+        color: #333;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-family: Courier, monospace;
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .author-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.author {
+    white-space: nowrap;
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+#ranking-methodology {
+    font-family: "Source Sans Pro", sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+#ranking-methodology h3, 
+#ranking-methodology h4, 
+#ranking-methodology h5 {
+    color: #2c3e50;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+#ranking-methodology p {
+    margin-bottom: 1em;
+}
+
+#ranking-methodology ul {
+    padding-left: 20px;
+    margin-bottom: 1em;
+}
+
+#ranking-methodology .equation-block {
+    background-color: #f8f8f8;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 80%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow-x: auto;
+}
+
+#ranking-methodology .equation-block pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    #ranking-methodology .equation-block {
+        max-width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .equation-block {
+        max-width: 95%;
+    }
+}
     </style>
 </head>
 
@@ -231,7 +330,7 @@ code {
             </ul>
         </div>
 
-        <div class="blog-container container">
+        <div class="blog-container">
             <div class="blog-post">
                 <h2 class="blog-title">Agent Arena</h2>
                 <div class="col-md-12">
@@ -240,7 +339,12 @@ code {
                         <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik
                             Yekollu</a>
                         <a class="author" href="https://www.linkedin.com/in/arthbohra/">Arth Bohra</a>
-                        <a class="author" href="https://www.linkedin.com/in/ashwin-chirumamilla-91103b1b5/">Ashwin Chirumamilla</a>
+                        <a class="author" href="https://www.linkedin.com/in/kaiwen129//">Kai Wen</a>
+                       <a class="author" href="https://www.linkedin.com/in/saikolasani/">Sai Kolasani</a>
+                        <a class="author" href="https://www.linkedin.com/in/ashwin-chirumamilla-91103b1b5/">Wei-Lin Chiang</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~angelopoulos/">Anastasios Angelopoulos</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir Patil</a>
                         <p></p>
                     </h4>
@@ -440,174 +544,167 @@ code {
                     <h2 id="evaluation-ranking">
                         Evaluation and Ranking System
                     </h2>
-                         
+                    
                     <div class="body">
                         <p>
-                            Agent Arena employs a comprehensive ranking system that evaluates
-                            agents based on their performance in head-to-head comparisons. The
-                            leaderboard ranks agents not only based on their overall
-                            performance but also by breaking down the performance of
-                            individual components such as LLM models, tools, and frameworks.
-                            The ranking process is informed by both user evaluations and an
-                            ELO-based rating system, commonly used in competitive ranking
-                            environments, where agent performance is dynamically adjusted
-                            after each task or comparison.
+                            Agent Arena employs a comprehensive ranking system that evaluates agents based on their performance in head-to-head comparisons. The leaderboard ranks agents not only based on their overall performance but also by breaking down the performance of individual components such as LLM models, tools, and frameworks.
+                            The ranking process is informed by both user evaluations and an ELO-based rating system, commonly used in competitive ranking environments, where agent performance is dynamically adjusted after each task or comparison.
                         </p>
                         <p>
-                            The rating system in Agent Arena is designed to reflect the
-                            cumulative performance of agents across a wide range of tasks,
-                            taking into account factors such as:
+                            The rating system in Agent Arena is designed to reflect the cumulative performance of agents across a wide range of tasks, taking into account factors such as:
                         </p>
                         <ul>
                             <li>
-                                <strong>Model performance:</strong> Evaluating the effectiveness
-                                of the underlying LLM models (e.g., GPT-4, Claude, Llama 3.1).
+                                <strong>Model performance:</strong> Evaluating the effectiveness of the underlying LLM models (e.g., GPT-4, Claude, Llama 3.1).
                             </li>
                             <li>
-                                <strong>Tool efficiency:</strong> Ranking the tools agents use
-                                to complete tasks (e.g., code interpreters, APIs like Brave
-                                Search or Yahoo Finance).
+                                <strong>Tool efficiency:</strong> Ranking the tools agents use to complete tasks (e.g., code interpreters, APIs like Brave Search or Yahoo Finance).
                             </li>
                             <li>
-                                <strong>Framework functionality:</strong> Assessing the broader
-                                frameworks that support agents, such as LangChain, LlamaIndex,
-                                and CrewAI.
+                                <strong>Framework functionality:</strong> Assessing the broader frameworks that support agents, such as LangChain, LlamaIndex, and CrewAI.
                             </li>
                         </ul>
+                        <p>Check out the latest rankings for each category on our leaderboard: <a href="https://www.agent-arena.com/leaderboard">Agent Arena Leaderboard</a>.</p>
                     </div>
+                    
                     <div id="images" style="display: flex; justify-content: center; margin-bottom: 20px;">
                         <figure style="margin-right: 10px; text-align: center;">
-                          <img src="../assets/img/blog_post_13_frameworkleaderboard.jpeg" style="width: 100%;">
-                          <figcaption>Framework Leaderboard</figcaption>
+                            <img src="../assets/img/blog_post_13_frameworkleaderboard.jpeg" style="width: 100%;">
+                            <figcaption>Framework Leaderboard</figcaption>
                         </figure>
                         <figure style="text-align: center;">
-                          <img src="../assets/img/blog_post_13_agentleaderboard.jpeg" style="width: 100%;">
-                          <figcaption>Agent Leaderboard</figcaption>
+                            <img src="../assets/img/blog_post_13_agentleaderboard.jpeg" style="width: 100%;">
+                            <figcaption>Agent Leaderboard</figcaption>
                         </figure>
-                      </div>
-                      <div id="images-2" style="display: flex; justify-content: center;">
+                    </div>
+                    <div id="images-2" style="display: flex; justify-content: center;">
                         <figure style="margin-right: 10px; text-align: center;">
-                          <img src="../assets/img/blog_post_13_tool_leaderboard.jpeg" style="width: 100%;">
-                          <figcaption>Tool Leaderboard</figcaption>
+                            <img src="../assets/img/blog_post_13_tool_leaderboard.jpeg" style="width: 100%;">
+                            <figcaption>Tool Leaderboard</figcaption>
                         </figure>
                         <figure style="text-align: center;">
-                          <img src="../assets/img/blog_post_13_modelleaderboard.jpeg" style="width: 100%;">
-                          <figcaption>Model Leaderboard</figcaption>
+                            <img src="../assets/img/blog_post_13_modelleaderboard.jpeg" style="width: 100%;">
+                            <figcaption>Model Leaderboard</figcaption>
                         </figure>
-                      </div>
-
-
-                      <div class="body">
-                        <!-- Previous content -->
-                    
-                        <h4 id="ranking-methodology">Explaining the Elo: Bradley-Terry Model and Modifications</h4>
-                        <p>
-                            The Bradley-Terry (BT) model is a widely used statistical approach to rank entities based on paired comparisons. In the context of Agent Arena, it serves as the backbone for evaluating and ranking LLM agents by comparing their performance in head-to-head "battles." Each time two agents are pitted against one another, the BT model assigns probabilities to the likelihood of one agent outperforming the other. The core idea is that agents are evaluated not only as a whole but also across their subcomponents—models, tools, and frameworks.
-                        </p>
-                    
-                        <h5>Challenges with the Traditional BT Model</h5>
-                        <p>
-                            While effective, the traditional BT model does face limitations in how it handles complex combinations of components. For instance, an agent's performance depends on several factors: the model it uses, the tools it integrates, and the framework it operates within. Each of these factors can confound the results in specific ways, especially when certain combinations of models and tools occur more frequently in the dataset.
-                        </p>
-                        <p>This issue is twofold:</p>
-                        <ol>
-                            <li>
-                                <strong>Confounding factors:</strong> In a dataset where some tools or models frequently co-occur, the ranking of individual tools or models may be biased. For example, if Tool A is often paired with Model X (a superior model), Tool A could unfairly receive a higher ranking due to the model's superior performance.
-                            </li>
-                            <li>
-                                <strong>Inefficient use of the data:</strong> When the same model (e.g., Model X vs. Model X) is pitted against itself with only a difference in tools, the standard BT model does not leverage this data efficiently. These intra-model comparisons could still offer valuable insights into the performance of different tools, but the traditional model treats such matches as uninformative.
-                            </li>
-                        </ol>
-                    
-                        <h5>Agent Arena's Modified BT Approach</h5>
-                        <p>To address these challenges, Agent Arena has implemented a modified BT model that improves the fairness and efficiency of the ranking system. Here's how:</p>
-                    
-                        <ol>
-                            <li>
-                                <strong>Simultaneous Component Evaluation:</strong> Instead of evaluating each component (model, tools, frameworks) in isolation, we've extended the BT model to evaluate combinations of these components simultaneously. This is done by creating an expanded feature matrix that captures all relevant components in each agent battle.
-                            </li>
-                            <li>
-                                <strong>X Matrix Expansion:</strong> The standard BT model uses an "X matrix" to represent the outcome of each battle, where each row corresponds to a comparison between two agents. The modified approach expands this matrix to include combinations of models and tools. If there are n battles, M models, and T tools, the matrix will have dimensions n x (M x T). This allows the model to evaluate the interaction between models and tools, rather than treating them independently.
-                            </li>
-                            <li>
-                                <strong>Minimizing Bias:</strong> By accounting for the interactions between components (tools, frameworks, and models), the modified BT model reduces the biases caused by confounding factors. For instance, it prevents a tool from being overrated just because it frequently pairs with a superior model. Instead, the system ensures that the ranking of a tool or model reflects its independent performance across various combinations.
-                            </li>
-                            <li>
-                                <strong>ELO System Integration:</strong> In addition to the BT model, Agent Arena uses an ELO-based rating system, particularly useful for real-time updates. ELO is commonly used in ranking systems like chess and is beneficial in a dynamic environment like Agent Arena, where agents compete frequently. The ELO scores are updated after every battle, giving users a continuously evolving leaderboard that reflects the latest results.
-                            </li>
-                        </ol>
-                    
-                        <h5>ELO Example: Agent A vs. Agent B</h5>
-                        <p>Let's take an example where Agent A is pitted against Agent B. Initially, Agent A has an ELO rating of 1600, while Agent B has an ELO rating of 1500. If Agent A wins, their new rating increases, and Agent B's decreases. The ELO system updates scores using the following formula:</p>
-                        
-                        <pre>ELO_New = ELO_Old + K * (Result - Expected_Score)</pre>
-                        
-                        <p>Where:</p>
-                        <ul>
-                            <li><strong>K</strong> is a constant that determines how much the ratings can change.</li>
-                            <li><strong>Result</strong> is 1 if Agent A wins, 0 if Agent B wins, or 0.5 in case of a tie.</li>
-                            <li><strong>Expected_Score</strong> is the probability that Agent A would win, based on their current ratings.</li>
-                        </ul>
-                        
-                        <p>The Expected Score for Agent A is calculated as:</p>
-                        
-                        <pre>Expected_Score_A = 1 / (1 + 10^((Rating_B - Rating_A) / 400))</pre>
-                        
-                        <p>Using this formula, if Agent A wins, their rating increases, and if Agent B wins, their rating increases accordingly.</p>                        
-                    
-                        <h5>Bradley-Terry Example: Agent A vs. Agent B</h5>
-                        <p>In the Bradley-Terry model, the probability that Agent A will win against Agent B is calculated using the scores of both agents:</p>
-                        
-                        <pre>P(A wins) = exp(score_A) / (exp(score_A) + exp(score_B))</pre>
-                        
-                        <p>Where:</p>
-                        <ul>
-                            <li><strong>score_A</strong> is the performance score of Agent A.</li>
-                            <li><strong>score_B</strong> is the performance score of Agent B.</li>
-                        </ul>
-                        
-                        <p>After a head-to-head comparison, the model updates the scores of both agents. The probability that Agent A wins reflects how much better or worse Agent A is compared to Agent B.</p>                        
-                    
-                        <h5>Modified Bradley-Terry Model with Subcomponents</h5>
-                        <p>In the traditional Bradley-Terry model, battles between agents were treated separately for each subcomponent—models, tools, and frameworks—essentially creating separate battles for each category. However, this approach had two key drawbacks:</p>
-                        
-                        <ul>
-                            <li><strong>Confounding factors:</strong> If certain combinations of tools and models (e.g., Tool A with Llama, Tool B with Claude) occur more often in the dataset, the results may be biased. For example, Tool B might benefit from frequently being paired with Claude, which could unfairly inflate its performance.</li>
-                            <li><strong>Inefficient use of data:</strong> Battles where agents use the same model but different tools (e.g., Claude vs. Claude with different tools) provide valuable data, but in the traditional method, this data was not fully utilized to assess the model's performance.</li>
-                        </ul>
-                        
-                        <h5>New Approach: Combined Coefficients</h5>
-                        <p>To address these issues, we now calculate the coefficients for subcomponents (models, tools, and frameworks) simultaneously, by expanding the X matrix. Instead of treating each battle as a single comparison between two agents, we evaluate the interaction between all components used in the battle.</p>
-                        
-                        <p>The solution is to create an X matrix that incorporates all relevant features for each battle. If there are <strong>n</strong> battles, <strong>M</strong> models, and <strong>T</strong> tools, the X matrix will have dimensions <strong>n x (M x T)</strong>. This means we are accounting for the combinations of models and tools in each battle, and their interactions are evaluated together.</p>
-                        
-                        <p>For example:</p>
-                        <pre>
-                        X Matrix:
-                        [Model_A, Tool_1, Framework_X]
-                        [Model_A, Tool_2, Framework_Y]
-                        [Model_B, Tool_1, Framework_X]
-                        ...
-                        </pre>
-                        
-                        <p>With this approach, the system can now estimate the performance of models, tools, and frameworks more accurately, even in cases where the same model is used in both agents. The model avoids biases from frequently co-occurring tools and makes better use of data from battles where agents share components.</p>
-                        
-                        <h5>Example: Claude vs. Claude with Different Tools</h5>
-                        <p>In a battle where both Agent A and Agent B use the same model (Claude), but different tools (Tool A and Tool B), the modified BT model can still assess the tool performance separately:</p>
-                        
-                        <pre>P(A_tool wins) = exp(score_A_tool) / (exp(score_A_tool) + exp(score_B_tool))</pre>
-                        
-                        <p>This allows the model to extract useful insights about tool performance, even when the model remains constant across agents.</p>
-                        
-                        <h5>Advantages of the New Approach</h5>
-                        <ul>
-                            <li><strong>Fair rankings:</strong> The model now reflects the independent performance of tools, models, and frameworks more accurately.</li>
-                            <li><strong>Efficient data usage:</strong> The expanded X matrix ensures that all relevant data is utilized, even from battles where agents share components.</li>
-                            <li><strong>Reduced bias:</strong> By evaluating the interactions between components, the model avoids bias from frequently co-occurring tools and models.</li>
-                        </ul>                        
                     </div>
                     
-
+                    <div class="body">
+                        <div id="ranking-methodology">
+                            <h3>⚖️ Explaining the Elo: Bradley-Terry Model and Subcomponent Modifications</h3>
+                            <div class="body">
+                              <p>
+                                The Bradley-Terry (BT) model is a well-established probabilistic method used to rank entities based on pairwise comparisons. In the context of <strong>Agent Arena</strong>, this model serves as the backbone for evaluating and ranking Large Language Model (LLM) agents. In our system, we assess not just the overall agent performance but also break it down into its core subcomponents—like models, tools, and frameworks. 🛠️
+                              </p>
+                          
+                              <h3>🔢 Traditional Elo System</h3>
+                              <p>
+                                The traditional Elo system is widely known for ranking entities, especially in competitive settings like chess. It computes ratings dynamically as agents compete. The formula is simple but powerful:
+                              </p>
+                              <div class="equation-block">
+                                <pre>ELO_New = ELO_Old + K × (Result - Expected_Score)</pre>
+                              </div>
+                              <p>Where:</p>
+                              <ul>
+                                <li><strong>K</strong> controls the magnitude of rating changes after each battle (in Agent Arena, we use K = 4).</li>
+                                <li><strong>Result</strong> is 1 if the agent wins, 0 if it loses, or 0.5 for a tie.</li>
+                                <li><strong>Expected_Score</strong> is the calculated likelihood of an agent winning based on its current rating.</li>
+                              </ul>
+                          
+                              <h4>🧑‍💻 Example: LangChain Brave-Search Agent vs. LlamaIndex Wikipedia Agent</h4>
+                              <p>
+                                Consider the <strong>LangChain Brave-Search Agent</strong> (initial Elo: 1600) facing off against the <strong>LlamaIndex Wikipedia Agent</strong> (initial Elo: 1500). The expected score for Brave-Search, calculated based on their Elo difference, would be:
+                              </p>
+                              <div class="equation-block">
+                                <pre>Expected_Score_Brave = 1 / (1 + 10^((1500 - 1600) / 400)) ≈ 0.64</pre>
+                              </div>
+                              <p>This implies Brave-Search is expected to win 64% of the time. If Brave-Search wins, its new rating will be:</p>
+                              <div class="equation-block">
+                                <pre>ELO_Brave_New = 1600 + 4 × (1 - 0.64) = 1601.44</pre>
+                              </div>
+                              <p>If Brave-Search loses, the rating drops accordingly, and the Wikipedia agent's rating adjusts upward.</p>
+                          
+                              <h3>🔄 Subcomponent Battles: Tools, Models, and Frameworks</h3>
+                              <p>
+                                In Agent Arena, each agent is a composite of various components, including tools, models, and frameworks. Instead of just evaluating the full agents, we also assess the performance of each individual subcomponent. This allows us to more accurately pinpoint where an agent's strength lies. Here's an example:
+                              </p>
+                              <ul>
+                                <li><strong>LangChain Brave-Search Agent</strong>: LangChain (Framework), Brave-Search (Tool), GPT-4o-2024-08-06 (Model)</li>
+                                <li><strong>LlamaIndex Wikipedia Agent</strong>: LlamaIndex (Framework), Wikipedia (Tool), Claude-3-5-Sonnet-20240620 (Model)</li>
+                              </ul>
+                          
+                              <h4>📊 Traditional BT Model with Subcomponent Comparisons</h4>
+                              <p>
+                                Using a traditional Bradley-Terry setup, we could treat each subcomponent battle independently. For example, when comparing <strong>Brave-Search</strong> against <strong>Wikipedia</strong>, the probability that Brave-Search wins would be:
+                              </p>
+                              <div class="equation-block">
+                                <pre>P(Brave wins) = exp(score_Brave) / (exp(score_Brave) + exp(score_Wikipedia))</pre>
+                              </div>
+                          
+                              <h4>🔄 Combined Subcomponent Rankings: Models + Tools + Frameworks</h4>
+                              <p>
+                                However, to get a holistic evaluation of an agent, we combine all its subcomponents into a single analysis. Instead of treating each subcomponent as an isolated entity, we consider their interaction within the broader agent architecture. For each battle, we build a design matrix <code>X</code> that represents all the subcomponents involved:
+                              </p>
+                              <div class="equation-block">
+                                <pre>X = [ +log(BASE), +log(BASE), +log(BASE), -log(BASE), -log(BASE), -log(BASE) ]</pre>
+                              </div>
+                              <p>
+                                Here, <code>+log(BASE)</code> represents the subcomponents (tool, model, framework) used by the winning agent, while <code>-log(BASE)</code> represents those used by the losing agent.
+                              </p>
+                          
+                              <h5>🛠️ Example: LangChain Brave-Search Agent vs. LlamaIndex Wikipedia Agent</h5>
+                              <p>
+                                If Brave-Search wins the battle, the design matrix would look like this:
+                              </p>
+                              <div class="equation-block">
+                                <pre>Components: [LangChain, Brave-Search, GPT-4o] vs. [LlamaIndex, Wikipedia, Claude]
+                          X = [ +log(BASE), +log(BASE), +log(BASE), -log(BASE), -log(BASE), -log(BASE) ]</pre>
+                              </div>
+                              <p>
+                                This allows us to evaluate the collective contribution of the subcomponents (tools, models, frameworks) in a single calculation. We then apply <strong>logistic regression with regularization</strong> to control for overfitting and confounding effects caused by frequent pairings.
+                              </p>
+                          
+                              <h3>📉 Regularization: Handling Data Imbalance</h3>
+                              <p>
+                                Given the diversity of agent configurations, certain agents may not battle frequently with others that have different components. This can lead to data sparsity. To counteract this, we use <strong>L1 regularization (Lasso)</strong>, which helps select the most important subcomponents while avoiding overfitting. The regularization formula is:
+                              </p>
+                              <div class="equation-block">
+                                <pre>Minimize: - [∑ Y_i log(P_i) + (1 - Y_i) log(1 - P_i)] + λ ∑|β_j|</pre>
+                              </div>
+                              <p>Where:</p>
+                              <ul>
+                                <li><strong>Y_i</strong> is the battle outcome (1 for win, 0 for loss).</li>
+                                <li><strong>P_i</strong> is the predicted probability of winning.</li>
+                                <li><strong>λ</strong> is the regularization parameter that controls sparsity.</li>
+                              </ul>
+                          
+                              <h4>🔎 Traditional Loss vs. Subcomponent Combined Loss</h4>
+                              <p>
+                                In a traditional BT model, the loss function calculates the difference between the predicted and actual outcomes for each battle, represented as:
+                              </p>
+                              <div class="equation-block">
+                                <pre>BCELoss(Sigmoid(X × β), Y)</pre>
+                              </div>
+                              <p>
+                                However, for the new approach, the loss function takes into account the combined influence of models, tools, and frameworks in a battle:
+                              </p>
+                              <div class="equation-block">
+                                <pre>BCELoss/Sigmoid(X^LLM B_LLM + X^Tool B_Tool + X^Framework B_Framework, Y)</pre>
+                              </div>
+                              <p>
+                                This approach reflects how each subcomponent contributes to the overall result, providing more accurate rankings.
+                              </p>
+                          
+                              <h3>✅ Conclusion: Fairer Rankings Across All Components</h3>
+                              <p>
+                                By using this combined approach, Agent Arena ensures more accurate rankings across agents and their subcomponents. 🔄 This method provides clearer insights into each agent's performance and contributions, preventing the bias that can occur from frequent pairings or overused configurations.
+                              </p>
+                              <p>🎉 As a result, our system generates a real-time, continuously updating leaderboard that not only reflects the agents' overall performance but also their specific subcomponent strengths. 🏆</p>
+                          
+                              <p>
+                                Check out our live leaderboards for agents, tools, models, and frameworks <a href="https://www.agent-arena.com/leaderboard" target="_blank">here</a>!
+                              </p>
+                            </div>
+                          </div>  
                         <h2 id="example-tasks">The Prompt Hub</h2>
                         <div class="body">
                             <p>
@@ -795,27 +892,32 @@ code {
                             </p>
 
                             <hr class="post-separator" />
-
-                            <p>
-                                We hope you enjoyed this blog post. We would love to hear from you
-                                on <a href="https://discord.gg/grXXvj9Whz">Discord</a>, Twitter
-                                (#AgentArena), and
-                                <a href="https://github.com/AgentArena">GitHub</a>.<br />
-                            </p>
-                            <p id="gorilla-bibtex">
-                                If you would like to cite Agent Arena:<br />
-                                @inproceedings{agent-marketplace,<br />
-                                &nbsp; title={Agent Marketplace},<br />
-                                &nbsp; author={Nithik Yekollu, Ronit Jain, Shishir G. Patil},<br />
-                                &nbsp; year={2024},<br />
-                                &nbsp;
-                                howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/13_agent_arena.html}},<br />
-                                }
-                            </p>
-                        </div>
+                            <div>
+                                <p>
+                                    We hope you enjoyed this blog post. We would love to hear from you on <a
+                                        href="https://discord.gg/grXXvj9Whz">Discord</a>, <a
+                                        href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter
+                                        (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
+                                </p>
+                            </div>
                 </div>
-            </div>
         </div>
+        <div class="citation-container">
+            <h4 class="citation-title">Citation</h4>
+            <p class="citation-intro">
+                If you would like to cite Agent Arena:
+            </p>
+            <pre class="citation-block"><code>@inproceedings{agent-arena,
+            title={Agent Arena},
+            author={Nithik Yekollu and Arth Bohra and Ashwin Chirumamilla and
+                    Wei-Lin Chiang and Anastasios Angelopoulos and Joseph E. Gonzalez and
+                    Ion Stoica and Shishir G. Patil},
+            year={2024},
+            howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/13_agent_arena.html}},
+}
+       </code></pre>
+        </div>
+    </div>
 
         <script>
             function toggleMoreBlogs() {

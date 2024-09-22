@@ -30,6 +30,21 @@
 
 </head>
 
+<style>
+    .author-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.author {
+    white-space: nowrap;
+    color: #1e90ff;
+    text-decoration: none;
+}
+</style>
+
 <body>
     <!-- Navigation Bar -->
     <div class="navbar">
@@ -88,15 +103,17 @@
                 <h2 class="blog-title">Berkeley Function-Calling Leaderboard</h2>
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
-                        <p></p>
-                        <a class="author" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a>
-                        <a class="author" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>
-                        <a class="author" href="https://charliejcj.github.io/">Charlie Cheng-Jie Ji<sup>*</sup></a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
-                        <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
-                        <p></p>
+                        <div class="author-container">
+                            <a class="author" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a>
+                            <a class="author" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>
+                            <a class="author" href="https://charliejcj.github.io/">Charlie Cheng-Jie Ji<sup>*</sup></a>
+                            <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
+                            <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
+                        </div>
+                        <div class="author-container">
+                            <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
+                            <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
+                        </div>
                     </h4>
                 </div>
                 <b><i style="font-size: 1.0em;">Last updated: 2024-08-19 <a
