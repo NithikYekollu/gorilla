@@ -106,12 +106,26 @@
                     href="blogs/13_bfcl_v3_multi_turn.html">BFCL-v3</a> introducing multi-turn interactions. Checkout <a
                     href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">code and data</a>.
             </p>
-            <div>
-                <span style="margin-left: 10px; margin-bottom: 15px;"><b><i style="font-size: 1.0em;">Last Updated:
-                            2024-09-20 <a
-                                href="https://github.com/ShishirPatil/gorilla/blob/changelog/berkeley-function-call-leaderboard/CHANGELOG.md#changelog">[Change
-                                Log]</a></i></b></span>
+        
+            <div class="mb-3">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                    <!-- Last Updated Section -->
+                    <div>
+                        <span>
+                            <b><i style="font-size: 1.0em;">Last Updated:
+                                2025-01-18 &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change Log]</a>
+                            </i></b>
+                        </span>
+                    </div>
+
+                    <!-- Search Section -->
+                    <div class="d-flex ms-md-auto mt-3 mt-md-0 justify-content-end" style="gap: 5px; width: 100%; max-width: 360px;">
+                        <input type="text" id="search-input" class="form-control flex-grow-1" placeholder="Search model names..." />
+                        <button id="search-btn" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
             </div>
+
             <div style="margin-bottom: 15px;">
             </div>
             <div class="table-container">
@@ -123,24 +137,28 @@
             </div>
             <p></p>
             <p>
-                FC = native support for function/tool calling.
+                <b>FC</b> = native support for function/tool calling.
+                <b>Prompt</b> = walk-around for function calling, using model's normal text generation capability.
             </p>
             <p>
                 <b>Cost</b> is calculated as an estimate of the cost per 1000 function calls, in USD.
                 <b>Latency</b> is measured in seconds.
-                For <b>Open-Source Models</b>, the cost and latency are calculated when serving with <a
-                    href="https://github.com/vllm-project/vllm">vLLM</a> using 8 V100 GPUs. The formula can be found in
-                the <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#cost">blog</a>.
             </p>
             <p>
-                <b>AST Summary</b> is the <b>unweighted</b> average of the four test categories under AST Evaluation.
-                <b>Exec Summary</b> is the <b>unweighted</b> average of the four test categories under Exec Evaluation.
                 <b>Overall Accuracy</b> is the <b>unweighted</b> average of all the sub-categories.
+                For details on score composition, please refer to our <a
+                    href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html#leaderboard-composition">blog</a>.
             </p>
             <p>
                 Click on column header to sort. If you would like to add
                 your model or contribute test-cases, please contact us via <a
                     href="https://discord.gg/grXXvj9Whz">discord</a>.
+            </p>
+            <p>
+                Models are evaluated using commit <b>fb5313f</b>. 
+                All the model response we obtained is available <a href="https://github.com/HuanzhiMao/BFCL-Result">here</a>. 
+                To reproduce the results, please checkout our codebase at 
+                <a href="https://github.com/ShishirPatil/gorilla/tree/fb5313f34941c75c5fb65e95282730c5dd0ddf40">this checkpoint</a>.
             </p>
         </div>
     </div>
@@ -179,7 +197,7 @@
         </div>
     </div>
 
-    <div class="treemap-container" id="treemap" style="background: #e5effc">
+    <!-- <div class="treemap-container" id="treemap" style="background: #e5effc">
         <h2>Error Type Analysis</h2>
         <p class="text-center">
             This interactive treemap shows the distribution of error types across
@@ -195,7 +213,7 @@
         </p>
 
         <div id="65eaa7cb-b38b-4e90-b8e2-7be2b3d11428" class="plotly-graph-div" style="height:100%; width:100%;"></div>
-    </div>
+    </div> -->
 
     <!-- API Explorer Section -->
     <div id="api-explorer" class="container" style="background: #e5effc">
